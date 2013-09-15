@@ -1,0 +1,33 @@
+<table class="user_list">
+  <tr>
+    <h1>Customers</h1>
+  	<td>
+		Name
+	</td>
+	<td>
+		Location
+	</td>
+	<td>
+		Created
+	</td>
+	<td>
+		Login
+	</td>
+  </tr>
+  {%- for customer in customers%}
+  	<tr>
+    	<td>
+    		<a href="/customer/{{customer.id}}/">{{ customer.name }}</a>
+    	</td>
+    	<td>
+    		{{ customer.location }}
+    	</td>
+    	<td>
+    		{{ customer.created }}
+    	</td>
+    	<td>
+    		{{ customer.login }}
+    	</td>
+    </tr>
+  {%- endfor %}
+</table>

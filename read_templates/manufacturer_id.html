@@ -1,0 +1,64 @@
+<table class="user_info">
+	<h1>User Info</h1>
+	<tr>
+		<td>
+			Name
+		</td>
+		<td>
+			Location
+		</td>
+		<td>
+			Created
+		</td>
+		<td>
+			Login
+		</td>
+	</tr>
+	<tr>
+		<td>
+			{{ manufacturer.name }}
+		</td>
+		<td>
+			{{ manufacturer.location }}
+		</td>
+		<td>
+			{{ manufacturer.created }}
+		</td>
+		<td>
+			{{ manufacturer.login }}
+		</td>
+	</tr>
+</table>
+<table>
+	<h1>Distributors</h1>
+	<tr>
+		<td>
+			Name
+		</td>
+		<td>
+			Location
+		</td>
+		<td>
+			Created
+		</td>
+		<td>
+			Login
+		</td>
+	</tr>
+	{%- for distributor in distributors%}
+  	<tr>
+    	<td>
+    		<a href="/distributor/{{distributor.id}}/">{{ distributor.name }}</a>
+    	</td>
+    	<td>
+    		{{ distributor.location }}
+    	</td>
+    	<td>
+    		{{ distributor.created }}
+    	</td>
+    	<td>
+    		{{ distributor.login }}
+    	</td>
+    </tr>
+ 	{%- endfor %}
+</table>

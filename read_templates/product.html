@@ -1,0 +1,57 @@
+<table class="user_list">
+  <tr>
+    <h1>{{user.properties.name}}'s inventory</h1>
+  	<td>
+  		Serial No.
+  	</td>
+    <td>
+      Name
+    </td>
+    <td>
+      Current Owner
+    </td>
+    <td>
+      Location
+    </td>
+    <td>
+      Status
+    </td>
+  </tr>
+  {%- for product in products%}
+  	<tr>
+    	<td>
+    		{{ product.id }}
+    	</td>
+      <td>
+        <a href="/product/{{product.id}}/">{{ product.name }}</a>
+      </td>
+      <td>
+        {% if product.current_owner.type == "manufacturer" %}
+          <a href="/manufacturer/{{product.current_owner.id}}/">{{ product.current_owner.name }}</a>
+        {% elif product.current_owner.type == "distributor" %}
+          <a href="/distributor/{{product.current_owner.id}}/">{{ product.current_owner.name }}</a>
+        {% elif product.current_owner.type == "seller" %}
+          <a href="/seller/{{product.current_owner.id}}/">{{ product.current_owner.name }}</a>
+        {% elif product.current_owner.type == "customer" %}
+          <a href="/customer/{{product.current_owner.id}}/">{{ product.current_owner.name }}</a>
+        {% endif %}
+      </td>
+      <td>
+        {{product.current_owner.location}}
+      </td>
+      <td>
+        {% if product.current_owner.type == "manufacturer" %}
+          On the way
+        {% elif product.current_owner.type == "distributor" %}
+          In warehouse
+        {% elif product.current_owner.type == "seller" %}
+          Out to sell
+        {% elif product.current_owner.type == "customer" %}
+          Sold
+        {% endif %}
+      </td>
+    </tr>
+  {%- endfor %}
+  {% if user.type == "seller" %}<a href="/order/add/">Add Order</a>{% endif %}
+</table>
+<style>td{padding-left:10px;padding-right:10px;</style>

@@ -1,0 +1,15 @@
+<table class="user_list">
+  <tr>
+    <h1>Products</h1>
+  	<td>
+  		Name
+  	</td>
+  </tr>
+  {%- for product in products%}
+  	<tr>
+    	<td>
+    		{{ product.name }}
+    	</td>
+    </tr>
+  {%- endfor %}
+</table>

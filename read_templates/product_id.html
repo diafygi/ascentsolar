@@ -1,0 +1,47 @@
+<table class="user_list">
+  <tr>
+    <h1>{{product.name}}</h1>
+    <td>
+  	  Serial No.
+  	</td>
+    <td>
+      Creator
+    </td>
+    <td>
+      Owner
+    </td>
+    <td>
+      Creation date
+    </td>
+  </tr>
+	<tr>
+    <td>
+      {{product.id}}
+    </td>
+    <td>
+      {% if product.created_by.type == "manufacturer" %}
+        <a href="/manufacturer/{{product.created_by.id}}/">{{ product.created_by.name }}</a>
+      {% elif product.created_by.type == "distributor" %}
+        <a href="/distributor/{{product.created_by.id}}/">{{ product.created_by.name }}</a>
+      {% elif product.created_by.type == "seller" %}
+        <a href="/seller/{{product.created_by.id}}/">{{ product.created_by.name }}</a>
+      {% elif product.created_by.type == "customer" %}
+        <a href="/customer/{{product.created_by.id}}/">{{ product.created_by.name }}</a>
+      {% endif %}
+    </td>
+    <td>
+      {% if product.current_owner.type == "manufacturer" %}
+        <a href="/manufacturer/{{product.current_owner.id}}/">{{ product.current_owner.name }}</a>
+      {% elif product.current_owner.type == "distributor" %}
+        <a href="/distributor/{{product.current_owner.id}}/">{{ product.current_owner.name }}</a>
+      {% elif product.current_owner.type == "seller" %}
+        <a href="/seller/{{product.current_owner.id}}/">{{ product.current_owner.name }}</a>
+      {% elif product.current_owner.type == "customer" %}
+        <a href="/customer/{{product.current_owner.id}}/">{{ product.current_owner.name }}</a>
+      {% endif %}
+    </td>
+    <td>
+      {{product.created}}
+    </td>
+  </tr>
+</table>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="http://code.jquery.com/jquery-1.6.1.min.js"></script>
+	<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.min.js"></script>
+	<script>
+
+		var current_link = '';
+		$( document ).ready(function() {
+			var classHighlight = 'highlight';
+			var $thumbs = $('.item').click(function(e) {
+			    e.preventDefault();
+			    $thumbs.removeClass(classHighlight);
+			    $(this).addClass(classHighlight);
+			});
+
+			$('.item').click(function(e) {
+			    e.preventDefault();
+			    current_link = $(this).attr("href");
+			});
+
+			$('.edit').click(function(e){
+				$(location).attr('href',current_link);
+			});
+		});
+	</script>
+	<style type="text/css">
+		.highlight {
+		    background-color: blue;
+		    font-weight: bold;
+		}
+	</style>
+</head>
+
+<body>
+
+<ul>
+{%- for country in countries %}
+  <li>
+    <div >
+      <span>{{country}}</span>
+    </div>
+    <ul>
+    {%- for manufacturer in manufacturers%}
+      {% if manufacturer.location == country %}
+      		<li>
+	      		<div >
+      				<a href="/manufacturer/{{manufacturer.id}}/" class="item" >{{manufacturer.name}}</a>
+			    </div>
+			    <ul>
+			    {%- for distributor in distributors%}
+			      {% if distributor.boss == manufacturer.id %}
+			        <li>
+			          <div>
+      					<a href="/distributor/{{distributor.id}}/" class="item" >{{distributor.name}}</a>
+			            <ul>
+			              {%- for seller in sellers%}
+			                {% if seller.boss == distributor.id %}
+			                  <li>
+			                    <div >
+      								<a href="/seller/{{seller.id}}/" class="item" >{{seller.name}}</a>
+			                    </div>
+			                  </li>
+			                {% endif %}
+			              {%- endfor %}
+			            </ul>
+			          </div>
+			        </li>
+			      {% endif %}
+			    {%- endfor %}
+			    </ul>
+			</li>
+	  {% endif %}    
+	{%- endfor %}
+	</ul>
+  </li>
+{%- endfor %}
+<ul>
+<p >New</p>
+<p class="edit">Edit</p>
+</body>
+</html>
