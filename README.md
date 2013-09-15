@@ -3,6 +3,8 @@ organize ascentsolar
 
 Fixing last mile distribution in developing world solar products
 
+Made at Solar Hackathon 2013 at SFunCube
+
 1. create a mysql database "solar"
 2. mysql> CREATE DATABASE solar;
 3. mysql> CREATE USER 'solaruser'@'localhost' IDENTIFIED BY 'solarpassword';
